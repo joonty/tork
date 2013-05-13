@@ -62,6 +62,7 @@ class Engine < Server
     if @passed_test_files.empty?
       tell @client, 'There are no passed test files to re-run.'
     else
+      send @clients, [:rerun_passed_test_files]
       run_test_files @passed_test_files
     end
   end
@@ -70,6 +71,7 @@ class Engine < Server
     if @failed_test_files.empty?
       tell @client, 'There are no failed test files to re-run.'
     else
+      send @clients, [:rerun_failed_test_files]
       run_test_files @failed_test_files
     end
   end
