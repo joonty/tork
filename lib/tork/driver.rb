@@ -29,7 +29,7 @@ class Driver < Server
     if all_test_files.empty?
       tell @client, 'There are no test files to run.'
     else
-      run_non_overhead_test_files all_test_files
+      run_non_overhead_test_files all_test_files, true
     end
   end
 
@@ -67,8 +67,8 @@ protected
 
 private
 
-  def run_non_overhead_test_files test_files
-    run_test_files test_files.reject {|f| overhead_file? f }
+  def run_non_overhead_test_files test_files, all_tests_included=false
+    run_test_files test_files.reject {|f| overhead_file? f }, all_tests_included
   end
 
   def overhead_file? file

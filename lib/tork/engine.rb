@@ -45,7 +45,8 @@ class Engine < Server
     end
   end
 
-  def run_test_files test_files_with_optional_line_numbers
+  def run_test_files test_files_with_optional_line_numbers, all_tests_included=false
+    send @clients, [:run_all_test_files] if all_tests_included
     test_files_with_optional_line_numbers.each {|f| run_test_file(*f) }
   end
 
